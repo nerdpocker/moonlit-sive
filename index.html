@@ -1,0 +1,161 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Moonlit Constellation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="sky">
+    <div class="mist"></div>
+    <div class="mist"></div>
+    <div class="dust" id="dust"></div>
+  </div>
+
+  <header>
+    <span>MOONLIT</span>
+    <button class="pill hidden" id="back">Back</button>
+    <span id="madeForYou">MADE FOR YOU</span>
+  </header>
+
+  <section class="view active" id="opening">
+    <span class="eyebrow">A little something for you</span>
+    <h1>Under the <em>same moon.</em></h1>
+    <p>Made just for [Your Name].</p>
+
+    <div class="moon-wrap" id="moonWrap">
+      <svg viewBox="0 0 260 260">
+        <circle cx="130" cy="130" r="117" fill="none" stroke="#bcd9f52a"/>
+        <circle id="ring" cx="130" cy="130" r="117" fill="none" stroke="#e4f2ff" stroke-width="2.5" stroke-dasharray="735.13" stroke-dashoffset="735.13"/>
+      </svg>
+      <button class="moon" id="moon" aria-label="Hold the moon for three seconds to enter"></button>
+    </div>
+
+    <span id="holdText" class="eyebrow">Hold the moon to start</span>
+    <p class="small">Keep holding for 3 seconds.</p>
+  </section>
+
+  <section class="view" id="hub">
+    <span class="eyebrow">Just the two of us</span>
+    <h2>A little bit of <em>everything.</em></h2>
+    <p>There's something waiting for you in every star. Go check them out.</p>
+
+    <div class="map">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M19 28 L53 12 L83 37 L68 78 L28 76 L19 28 M53 12 L68 78 M19 28 L83 37" stroke="#bcd9f54d" stroke-width=".25" fill="none" stroke-dasharray="1 1"/>
+      </svg>
+
+      <button class="node" data-go="moments" style="left:19%;top:28%"><b>✧</b>Moments</button>
+      <button class="node" data-go="constellation" style="left:53%;top:12%"><b>✦</b>Our Stars</button>
+      <button class="node" data-go="letter" style="left:83%;top:37%"><b>♡</b>A Letter</button>
+      <button class="node" data-go="sound" style="left:68%;top:78%"><b>♫</b>Our Songs</button>
+      <button class="node" data-go="forever" style="left:28%;top:76%"><b>◉</b>One More Thing</button>
+    </div>
+
+    <span class="eyebrow" id="progress">0 / 5 explored</span>
+  </section>
+
+  <section class="view" id="moments">
+    <span class="eyebrow">Our Journeys</span>
+    <h2>Some of my <em>favorite memories.</em></h2>
+    <p>Little moments with you that I'll always remember.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="view" id="constellation">
+    <span class="eyebrow">Our Stars</span>
+    <h2>Let's connect <em>the stars.</em></h2>
+    <p>Tap the stars in the right order and see what happens.</p>
+
+    <div class="board" id="board">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polyline id="lines" fill="none" stroke="#d9edff" stroke-width=".65" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px #a5d4ff)"/>
+        <line id="trace" stroke="#bcd9f5" stroke-width=".4" stroke-dasharray="1 1" visibility="hidden"/>
+      </svg>
+    </div>
+
+    <p id="starMessage" aria-live="polite">0 / 9 stars connected</p>
+    <button class="pill" id="reset">Try again</button>
+  </section>
+
+  <section class="view" id="letter">
+    <span class="eyebrow">Sweet Note</span>
+    <h2>Just some words <em>for you.</em></h2>
+    <p>Something I've been wanting to tell you.</p>
+
+    <button class="capsule glass" id="capsule" aria-expanded="false">♡</button>
+    <span class="small" id="noteHint">Tap to open your letter</span>
+
+    <article class="note glass" id="note">
+      <h2 style="font-size:40px">Dear [Your Name],</h2>
+
+      <p style="margin-top:20px">
+        Can't believe it's already been one month with you.
+        It hasn't always been perfect, but honestly, I wouldn't
+        want to spend these moments with anyone else.
+      </p>
+
+      <p style="margin-top:15px">
+        Thank you for being here, for putting up with me,
+        and for making even the simplest days feel special.
+        I hope we get to make a lot more memories together.
+      </p>
+
+      <p style="margin-top:15px">
+        I love you. Always, [Your Name].
+      </p>
+    </article>
+  </section>
+
+  <section class="view" id="sound">
+    <span class="eyebrow">Playlist</span>
+    <h2>Songs that remind me <em>of you.</em></h2>
+    <p>Pick one. Maybe you'll know why I chose it.</p>
+
+    <div class="disc"></div>
+    <div class="songs" id="songs"></div>
+
+    <iframe id="player" title="Spotify track" height="152"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"></iframe>
+
+    <p class="small">Choose a song and press play.</p>
+  </section>
+
+  <section class="view" id="forever">
+    <span class="eyebrow">One Last Thing</span>
+    <h2>Let's make it <em>happen.</em></h2>
+    <p id="eclipseHint">Move the moon and bring it closer to the sun.</p>
+
+    <div class="eclipse-stage" id="eclipseStage">
+      <div class="eclipse-orbit"></div>
+      <div class="eclipse-sun"></div>
+      <div class="eclipse-corona"></div>
+      <button id="eclipseMoon" aria-label="Move moon with arrow keys or drag toward the sun"></button>
+    </div>
+
+    <span class="eyebrow" id="eclipseProgress" aria-live="polite">Almost there · 0%</span>
+
+    <div id="eclipseMessage" hidden>
+      <h2>Out of all the people in this world,<br><em>I'm glad I found you.</em></h2>
+      <p>Happy 1st mensiversary, my love.<br>Here's to more months, more memories, and more us.</p>
+
+      <div class="final-actions">
+        <button class="pill" id="eclipseReset">One more time</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Memory photo">
+    <button class="pill" id="close">Close ×</button>
+    <img id="bigPhoto" alt="Selected memory">
+    <p id="bigCaption"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
