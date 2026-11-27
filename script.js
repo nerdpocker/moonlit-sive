@@ -24,7 +24,7 @@ function show(id) {
         document.querySelector(`[data-go="${id}"]`)?.classList.add('done');
         $('progress').textContent = `${visited.size} / 5 stars explored`;
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
 }
 document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 $('back').onclick = () => show('hub');
@@ -168,27 +168,12 @@ update();
 // ==============================
 // Words / crystal message
 // ==============================
-function setLetterOpen(open) {
-    $('note').classList.toggle('open', open);
-    $('letter').classList.toggle('letter-fullscreen', open);
+$('capsule').onclick = () => {
+    let open = $('note').classList.toggle('open');
     $('capsule').classList.toggle('open', open);
     $('capsule').setAttribute('aria-expanded', open);
-    $('noteHint').textContent = open ? 'A piece of my heart' : 'Tap to open your letter';
-    document.body.classList.toggle('letter-reading', open);
-    if (open) {
-        $('note').scrollTop = 0;
-        $('closeLetter').focus({ preventScroll: true });
-    } else {
-        $('capsule').focus({ preventScroll: true });
-    }
-}
-$('capsule').onclick = () => setLetterOpen(!$('note').classList.contains('open'));
-$('closeLetter').onclick = () => setLetterOpen(false);
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && $('note').classList.contains('open')) {
-        setLetterOpen(false);
-    }
-});
+    $('noteHint').textContent = open ? 'A piece of my heart' : 'Touch the crystal to reveal';
+};
 // ==============================
 // Sound / edit Spotify track IDs here
 // ==============================
