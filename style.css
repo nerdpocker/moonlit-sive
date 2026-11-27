@@ -841,3 +841,103 @@ header > span:last-child {
 .note h2 {
   line-height: 1.1;
 }
+
+
+/* A little more breathing room and a complete, readable love letter. */
+.note {
+  width: min(640px, 100%);
+  max-height: min(68svh, 720px);
+  overflow-y: auto;
+  padding: clamp(22px, 5vw, 38px);
+  border-color: #d9edff55;
+  background:
+    radial-gradient(ellipse at 50% 0%, #d9edff18, transparent 58%),
+    linear-gradient(145deg, #142943ed, #0d1c31f2);
+  box-shadow: 0 24px 70px #02091688, inset 0 1px 0 #ffffff20;
+  scrollbar-color: #7898bb66 transparent;
+}
+
+.note p {
+  color: #d3e2f3;
+  font-size: 14px;
+  line-height: 1.95;
+  margin-top: 18px !important;
+}
+
+.letter-flourish {
+  display: block;
+  margin-bottom: 12px;
+  color: #c5ddf7;
+  letter-spacing: .35em;
+  text-align: center;
+  text-shadow: 0 0 18px #bcd9f588;
+}
+
+.note .letter-title {
+  font-size: clamp(34px, 7vw, 48px) !important;
+  text-align: center;
+  color: #f1f7ff;
+}
+
+.note .letter-signoff {
+  color: #edf6ff;
+  text-align: center;
+  margin-top: 26px !important;
+}
+
+.note .letter-signature {
+  color: #bcd9f5;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 23px;
+  font-style: italic;
+  text-align: right;
+  margin-top: 10px !important;
+}
+
+/* Keep the final message and its button in the normal page flow. */
+#eclipseMessage:not([hidden]) {
+  width: min(680px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 0 30px;
+}
+
+#eclipseMessage h2 {
+  line-height: 1.12;
+  max-width: 680px;
+}
+
+#eclipseMessage p {
+  line-height: 1.9;
+}
+
+.final-actions {
+  position: static;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .note {
+    max-height: 62svh;
+    padding: 22px 19px;
+  }
+
+  .note p {
+    font-size: 13px;
+  }
+
+  #eclipseMessage:not([hidden]) {
+    padding: 8px 0 24px;
+  }
+
+  .final-actions {
+    position: static;
+    margin-top: 2px;
+  }
+}
